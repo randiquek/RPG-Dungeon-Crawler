@@ -1,6 +1,8 @@
 package com.myprojects.dungeonscape.controller;
 
 import com.myprojects.dungeonscape.data.model.Battle;
+import com.myprojects.dungeonscape.dto.BattleRequest;
+import com.myprojects.dungeonscape.dto.BattleResult;
 import com.myprojects.dungeonscape.service.BattleService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,11 @@ public class BattleController {
     @PostMapping
     public Battle createBattle(@RequestBody Battle battle) {
         return battleService.createBattle(battle);
+    }
+
+    @PostMapping("/fight")
+    public BattleResult fight(@RequestBody BattleRequest request) {
+        return battleService.fight(request.getPlayerId(), request.getMonsterId());
     }
 
     @GetMapping
